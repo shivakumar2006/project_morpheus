@@ -1,0 +1,425 @@
+import React, { useState } from "react";
+import {
+    useGetCropsQuery,
+    useGetCropsByCategoryQuery,
+} from "../store/api/CropsApi";
+import {
+    useAddToCartMutation,
+    useUpdateCartQuantityMutation,
+    useRemoveFromCartMutation,
+} from "../store/api/CartApi";
+import { toast, Bounce } from "react-toastify";
+
+const CATEGORIES = [
+    { key: "All", icon: "🌿", color: "#34d399" },
+    { key: "Careal Crops", icon: "🌾", color: "#fcd34d" },
+    { key: "Cash Crops", icon: "💰", color: "#86efac" },
+    { key: "Oil Seeds", icon: "🫙", color: "#fdba74" },
+    { key: "Plantation Crops", icon: "🌴", color: "#6ee7b7" },
+];
+
+// ── Zomato-style quantity stepper ─────────────────────────────────────────────
+const QuantityStepper = ({ quantity, onAdd, onIncrease, onDecrease, adding, updating, hovered }) => {
+    const busy = adding || updating;
+
+    if (quantity === 0) {
+        return (
+            <button
+                onClick={onAdd}
+                disabled={busy}
+                style={{
+                    marginTop: "12px", width: "100%",
+                    padding: "11px 16px", borderRadius: "12px",
+                    border: `1px solid ${hovered ? "transparent" : "rgba(52,211,153,0.22)"}`,
+                    background: busy
+                        ? "rgba(52,211,153,0.12)"
+                        : hovered
+                            ? "linear-gradient(135deg,#059669,#047857)"
+                            : "rgba(52,211,153,0.10)",
+                    color: busy ? "rgba(52,211,153,0.5)" : "#fff",
+                    fontSize: "13px", fontWeight: "800", fontFamily: "inherit",
+                    cursor: busy ? "not-allowed" : "pointer",
+                    letterSpacing: "0.3px",
+                    boxShadow: hovered && !busy ? "0 4px 18px rgba(5,150,105,0.4)" : "none",
+                    transition: "all 0.25s",
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: "7px",
+                    animation: "stepperAppear 0.3s both ease",
+                }}
+            >
+                {busy ? (
+                    <>
+                        <span style={{ display: "inline-block", width: "14px", height: "14px", border: "2px solid rgba(52,211,153,0.3)", borderTopColor: "#34d399", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+                        Adding…
+                    </>
+                ) : (
+                    <>🛒 Add to Cart</>
+                )}
+            </button>
+        );
+    }
+
+    return (
+        <div style={{
+            marginTop: "12px",
+            display: "flex", alignItems: "center",
+            borderRadius: "12px", overflow: "hidden",
+            border: "1px solid rgba(52,211,153,0.45)",
+            background: "rgba(5,150,105,0.15)",
+            boxShadow: "0 4px 18px rgba(5,150,105,0.25)",
+            animation: "stepperAppear 0.3s both cubic-bezier(.34,1.56,.64,1)",
+            opacity: updating ? 0.7 : 1,
+            transition: "opacity 0.15s",
+        }}>
+            {/* − / 🗑 */}
+            <button
+                onClick={onDecrease}
+                disabled={updating}
+                style={{
+                    width: "44px", height: "42px", flexShrink: 0,
+                    background: "transparent", border: "none",
+                    borderRight: "1px solid rgba(52,211,153,0.25)",
+                    color: updating ? "rgba(52,211,153,0.4)" : "#34d399",
+                    fontSize: quantity === 1 ? "15px" : "20px",
+                    fontWeight: "700",
+                    cursor: updating ? "not-allowed" : "pointer",
+                    fontFamily: "inherit",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    transition: "background 0.15s, transform 0.1s",
+                    lineHeight: 1,
+                }}
+                onMouseEnter={e => { if (!updating) e.currentTarget.style.background = "rgba(239,68,68,0.15)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
+                onMouseDown={e => { if (!updating) e.currentTarget.style.transform = "scale(0.85)"; }}
+                onMouseUp={e => { e.currentTarget.style.transform = "scale(1)"; }}
+            >
+                {quantity === 1 ? "🗑️" : "−"}
+            </button>
+
+            {/* Count */}
+            <div style={{
+                flex: 1, textAlign: "center",
+                fontSize: "16px", fontWeight: "900", color: "#fff",
+                letterSpacing: "-0.3px", userSelect: "none",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                height: "42px",
+            }}>
+                {updating ? (
+                    <span style={{ display: "inline-block", width: "14px", height: "14px", border: "2px solid rgba(52,211,153,0.3)", borderTopColor: "#34d399", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+                ) : (
+                    <span key={quantity} style={{ display: "inline-block", animation: "countPop 0.22s cubic-bezier(.34,1.8,.64,1)" }}>
+                        {quantity}
+                    </span>
+                )}
+            </div>
+
+            {/* + */}
+            <button
+                onClick={onIncrease}
+                disabled={updating}
+                style={{
+                    width: "44px", height: "42px", flexShrink: 0,
+                    background: "transparent", border: "none",
+                    borderLeft: "1px solid rgba(52,211,153,0.25)",
+                    color: updating ? "rgba(52,211,153,0.4)" : "#34d399",
+                    fontSize: "20px", fontWeight: "700",
+                    cursor: updating ? "not-allowed" : "pointer",
+                    fontFamily: "inherit",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    transition: "background 0.15s, transform 0.1s",
+                    lineHeight: 1,
+                }}
+                onMouseEnter={e => { if (!updating) e.currentTarget.style.background = "rgba(5,150,105,0.25)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
+                onMouseDown={e => { if (!updating) e.currentTarget.style.transform = "scale(0.88)"; }}
+                onMouseUp={e => { e.currentTarget.style.transform = "scale(1)"; }}
+            >
+                +
+            </button>
+        </div>
+    );
+};
+
+// ── Crop card ─────────────────────────────────────────────────────────────────
+const CropCard = ({ crop, onAddToCart, onIncrease, onDecrease, quantity, adding, updating, index }) => {
+    const [hovered, setHovered] = useState(false);
+    const cat = CATEGORIES.find(c => c.key === crop.category) || CATEGORIES[0];
+
+    return (
+        <div
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            style={{
+                background: "rgba(255,255,255,0.04)",
+                border: `1px solid ${hovered ? "rgba(52,211,153,0.25)" : "rgba(255,255,255,0.08)"}`,
+                borderRadius: "20px", overflow: "hidden",
+                display: "flex", flexDirection: "column",
+                backdropFilter: "blur(16px)",
+                boxShadow: hovered ? "0 20px 52px rgba(0,0,0,0.5)" : "0 6px 24px rgba(0,0,0,0.3)",
+                transform: hovered ? "translateY(-6px) scale(1.01)" : "translateY(0) scale(1)",
+                transition: "all 0.3s cubic-bezier(0.34,1.2,0.64,1)",
+                animation: `cardIn 0.5s ${Math.min(index * 60, 500)}ms both ease`,
+                position: "relative",
+            }}
+        >
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: hovered ? "linear-gradient(90deg,transparent,rgba(52,211,153,0.5),transparent)" : "linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)", transition: "background 0.3s", zIndex: 1 }} />
+
+            {/* Image */}
+            <div style={{ position: "relative", height: "180px", overflow: "hidden", background: "rgba(0,0,0,0.3)", flexShrink: 0 }}>
+                <img
+                    src={`http://localhost:8000/images/${crop.image}`}
+                    alt={crop.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", transform: hovered ? "scale(1.07)" : "scale(1)" }}
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(2,12,6,0.6) 0%, transparent 55%)" }} />
+
+                {/* Category badge */}
+                <div style={{ position: "absolute", top: "10px", left: "10px", display: "flex", alignItems: "center", gap: "5px", background: "rgba(2,12,6,0.75)", border: `1px solid ${cat.color}40`, borderRadius: "99px", padding: "3px 10px", backdropFilter: "blur(8px)" }}>
+                    <span style={{ fontSize: "11px" }}>{cat.icon}</span>
+                    <span style={{ fontSize: "10px", fontWeight: "700", color: cat.color, letterSpacing: "0.5px" }}>{crop.category}</span>
+                </div>
+
+                {/* Quantity bubble */}
+                {quantity > 0 && (
+                    <div style={{
+                        position: "absolute", top: "10px", right: "10px",
+                        minWidth: "26px", height: "26px", borderRadius: "99px",
+                        padding: "0 6px",
+                        background: "linear-gradient(135deg,#059669,#047857)",
+                        border: "2px solid rgba(52,211,153,0.5)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: "11px", fontWeight: "900", color: "#fff",
+                        boxShadow: "0 4px 12px rgba(5,150,105,0.5)",
+                        animation: "badgePop 0.3s cubic-bezier(.34,1.8,.64,1)",
+                    }}>
+                        {quantity}
+                    </div>
+                )}
+            </div>
+
+            {/* Body */}
+            <div style={{ padding: "16px 18px 18px", flex: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
+                <div style={{ fontSize: "16px", fontWeight: "800", color: "#fff", letterSpacing: "-0.2px", lineHeight: 1.2 }}>
+                    {crop.name}
+                </div>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "4px", marginTop: "4px" }}>
+                    <span style={{ fontSize: "22px", fontWeight: "900", color: "#34d399", letterSpacing: "-0.5px" }}>₹{crop.price}</span>
+                    <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", fontWeight: "500" }}>/kg</span>
+                </div>
+
+                <QuantityStepper
+                    quantity={quantity}
+                    onAdd={() => onAddToCart(crop)}
+                    onIncrease={() => onIncrease(crop)}
+                    onDecrease={() => onDecrease(crop)}
+                    adding={adding}
+                    updating={updating}
+                    hovered={hovered}
+                />
+            </div>
+        </div>
+    );
+};
+
+// ── Main component ─────────────────────────────────────────────────────────────
+const CropPage = () => {
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [addingId, setAddingId] = useState(null); // crop being added for first time
+    const [updatingId, setUpdatingId] = useState(null); // crop whose qty is being inc/dec'd
+
+    // Optimistic local quantity map: { [cropId]: number }
+    const [quantities, setQuantities] = useState({});
+
+    const allData = useGetCropsQuery(undefined, { skip: selectedCategory !== "All" });
+    const categoryData = useGetCropsByCategoryQuery(selectedCategory, { skip: selectedCategory === "All" });
+
+    // ✅ All three mutations from your CartApi
+    const [addToCart] = useAddToCartMutation();
+    const [updateCartQuantity] = useUpdateCartQuantityMutation();
+    const [removeFromCart] = useRemoveFromCartMutation();
+
+    const data = selectedCategory === "All" ? allData.data : categoryData.data;
+    const loading = selectedCategory === "All" ? allData.isLoading : categoryData.isLoading;
+    const error = selectedCategory === "All" ? allData.error : categoryData.error;
+    const activeCat = CATEGORIES.find(c => c.key === selectedCategory) || CATEGORIES[0];
+
+    // ── 1. First "Add to Cart" → POST /cart/add ──────────────────────────────
+    const handleAddToCart = async (crop) => {
+        setAddingId(crop._id);
+        try {
+            await addToCart({
+                itemId: crop._id.toString(),
+                service: "crop",
+                name: crop.name,
+                price: crop.price,
+                image: crop.image,
+                category: crop.category,
+                quantity: 1,
+            }).unwrap();
+
+            setQuantities(prev => ({ ...prev, [crop._id]: 1 }));
+            toast.success(`${crop.name} added to cart!`, {
+                position: "bottom-right", autoClose: 2500, theme: "dark", transition: Bounce,
+            });
+        } catch (err) {
+            console.error("addToCart failed:", err);
+            toast.error("Failed to add to cart", {
+                position: "bottom-right", autoClose: 2500, theme: "dark", transition: Bounce,
+            });
+        } finally {
+            setAddingId(null);
+        }
+    };
+
+    // ── 2. + button → PATCH /cart/update?action=inc&itemId=... ──────────────
+    const handleIncrease = async (crop) => {
+        const prev = quantities[crop._id] || 0;
+        setQuantities(q => ({ ...q, [crop._id]: prev + 1 })); // optimistic
+        setUpdatingId(crop._id);
+        try {
+            await updateCartQuantity({
+                itemId: crop._id.toString(),
+                action: "inc",
+            }).unwrap();
+        } catch (err) {
+            setQuantities(q => ({ ...q, [crop._id]: prev })); // rollback
+            console.error("increment failed:", err);
+            toast.error("Couldn't update quantity", {
+                position: "bottom-right", autoClose: 2000, theme: "dark", transition: Bounce,
+            });
+        } finally {
+            setUpdatingId(null);
+        }
+    };
+
+    // ── 3. − button → dec or DELETE when qty reaches 0 ──────────────────────
+    const handleDecrease = async (crop) => {
+        const current = quantities[crop._id] || 0;
+        if (current <= 0) return;
+
+        const next = current - 1;
+        setQuantities(q => ({ ...q, [crop._id]: next })); // optimistic
+        setUpdatingId(crop._id);
+
+        try {
+            if (next === 0) {
+                // ✅ Remove entirely → DELETE /cart/remove?itemId=...
+                await removeFromCart(crop._id.toString()).unwrap();
+                toast.info(`${crop.name} removed from cart`, {
+                    position: "bottom-right", autoClose: 2000, theme: "dark", transition: Bounce,
+                });
+            } else {
+                // ✅ Decrement → PATCH /cart/update?action=dec&itemId=...
+                await updateCartQuantity({
+                    itemId: crop._id.toString(),
+                    action: "dec",
+                }).unwrap();
+            }
+        } catch (err) {
+            setQuantities(q => ({ ...q, [crop._id]: current })); // rollback
+            console.error("decrement failed:", err);
+            toast.error("Couldn't update quantity", {
+                position: "bottom-right", autoClose: 2000, theme: "dark", transition: Bounce,
+            });
+        } finally {
+            setUpdatingId(null);
+        }
+    };
+
+    return (
+        <>
+            <style>{`
+                @keyframes cardIn        { from { opacity:0; transform:translateY(20px) scale(0.97); } to { opacity:1; transform:translateY(0) scale(1); } }
+                @keyframes spin          { to { transform:rotate(360deg); } }
+                @keyframes fadeIn        { from { opacity:0; } to { opacity:1; } }
+                @keyframes skeletonPulse { 0%,100% { opacity:0.35; } 50% { opacity:0.7; } }
+                @keyframes stepperAppear { from { opacity:0; transform:scale(0.85) translateY(6px); } to { opacity:1; transform:scale(1) translateY(0); } }
+                @keyframes countPop      { 0% { transform:scale(1.5); opacity:0.6; } 100% { transform:scale(1); opacity:1; } }
+                @keyframes badgePop      { 0% { transform:scale(0); opacity:0; } 70% { transform:scale(1.2); } 100% { transform:scale(1); opacity:1; } }
+                select option { background: #0a1a0d; color: #fff; }
+            `}</style>
+
+            {/* ── Toolbar ── */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "28px", flexWrap: "wrap", gap: "14px" }}>
+                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                    {CATEGORIES.map((cat) => {
+                        const isActive = selectedCategory === cat.key;
+                        return (
+                            <button
+                                key={cat.key}
+                                onClick={() => setSelectedCategory(cat.key)}
+                                style={{
+                                    display: "flex", alignItems: "center", gap: "7px",
+                                    padding: "9px 16px", borderRadius: "12px",
+                                    border: `1px solid ${isActive ? `${cat.color}45` : "rgba(255,255,255,0.08)"}`,
+                                    background: isActive ? `${cat.color}18` : "rgba(255,255,255,0.04)",
+                                    color: isActive ? "#fff" : "rgba(255,255,255,0.45)",
+                                    fontSize: "13px", fontWeight: "700", fontFamily: "inherit",
+                                    cursor: "pointer",
+                                    boxShadow: isActive ? `0 4px 16px ${cat.color}28` : "none",
+                                    transition: "all 0.2s",
+                                }}
+                                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "#fff"; } }}
+                                onMouseLeave={e => { if (!isActive) { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.color = "rgba(255,255,255,0.45)"; } }}
+                            >
+                                <span>{cat.icon}</span>
+                                <span>{cat.key}</span>
+                            </button>
+                        );
+                    })}
+                </div>
+                {data && (
+                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.32)", fontWeight: "600", animation: "fadeIn 0.3s both ease" }}>
+                        {data.length} {data.length === 1 ? "crop" : "crops"} found
+                    </div>
+                )}
+            </div>
+
+            {/* ── Loading skeletons ── */}
+            {loading && (
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: "16px" }}>
+                    {[...Array(8)].map((_, i) => (
+                        <div key={i} style={{ height: "280px", borderRadius: "20px", background: "rgba(255,255,255,0.04)", animation: `skeletonPulse 1.4s ${i * 100}ms ease-in-out infinite` }} />
+                    ))}
+                </div>
+            )}
+
+            {/* ── Error ── */}
+            {error && (
+                <div style={{ textAlign: "center", padding: "60px 24px", background: "rgba(239,68,68,0.07)", border: "1px solid rgba(239,68,68,0.18)", borderRadius: "20px" }}>
+                    <div style={{ fontSize: "40px", marginBottom: "14px" }}>⚠️</div>
+                    <div style={{ fontSize: "15px", fontWeight: "700", color: "#f87171" }}>Failed to load crops</div>
+                    <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginTop: "6px" }}>Please check your connection and try again.</div>
+                </div>
+            )}
+
+            {/* ── Empty ── */}
+            {!loading && !error && data?.length === 0 && (
+                <div style={{ textAlign: "center", padding: "60px 24px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px" }}>
+                    <div style={{ fontSize: "48px", marginBottom: "14px" }}>{activeCat.icon}</div>
+                    <div style={{ fontSize: "16px", fontWeight: "700", color: "rgba(255,255,255,0.4)" }}>No crops in this category</div>
+                </div>
+            )}
+
+            {/* ── Crop grid ── */}
+            {!loading && !error && data?.length > 0 && (
+                <div key={selectedCategory} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: "16px" }}>
+                    {data.map((crop, i) => (
+                        <CropCard
+                            key={crop._id}
+                            crop={crop}
+                            index={i}
+                            quantity={quantities[crop._id] || 0}
+                            onAddToCart={handleAddToCart}
+                            onIncrease={handleIncrease}
+                            onDecrease={handleDecrease}
+                            adding={addingId === crop._id}
+                            updating={updatingId === crop._id}
+                        />
+                    ))}
+                </div>
+            )}
+        </>
+    );
+};
+
+export default CropPage;

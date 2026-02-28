@@ -1,0 +1,473 @@
+[
+    {
+        "id": 1,
+        "state": "BIHAR",
+        "district": "Kaimur (Bhabua)",
+        "location": "Mohania",
+        "address": "Central Warehouse Mohania, APMC Yard, Mohania, Distt-Kaimur (Bhabua), Bihar, PIN 821109",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "8174881088",
+        "capacity_mt": 4950,
+        "wh_code": "5091645",
+        "registration_date": "2021-05-07",
+        "valid_upto": "2026-05-06",
+        "crops_handled": [
+            "foodgrains",
+            "pulses",
+            "oilseeds"
+        ]
+    },
+    {
+        "id": 2,
+        "state": "BIHAR",
+        "district": "Samastipur",
+        "location": "Kharsand",
+        "address": "Kharsand Purvi PACS-02 Warehouse, Kharsand, Kalyanpur, Distt-Samastipur, Bihar",
+        "warehouseman": "Ergos Business Solutions Private Limited",
+        "mobile": "7033212281",
+        "capacity_mt": 926,
+        "wh_code": "4691649",
+        "registration_date": "2021-04-16",
+        "valid_upto": "2026-04-15",
+        "crops_handled": [
+            "paddy",
+            "wheat"
+        ]
+    },
+    {
+        "id": 3,
+        "state": "BIHAR",
+        "district": "Vaishali",
+        "location": "Govindpur Bela",
+        "address": "Govindpur Bela Prathmik Krishi Sakh Samiti Warehouse, Patepur, Distt-Vaishali, Bihar",
+        "warehouseman": "Ergos Business Solutions Private Limited",
+        "mobile": "7033212281",
+        "capacity_mt": 1127,
+        "wh_code": "5371683",
+        "registration_date": "2021-05-31",
+        "valid_upto": "2026-05-30",
+        "crops_handled": [
+            "paddy",
+            "maize"
+        ]
+    },
+    {
+        "id": 4,
+        "state": "BIHAR",
+        "district": "Katihar",
+        "location": "Tingachhiya",
+        "address": "Central Warehouse Katihar, Bazar Samiti, Tingachhiya, Distt-Katihar, Bihar",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "8174881088",
+        "capacity_mt": 8000,
+        "wh_code": "4271647",
+        "registration_date": "2021-04-06",
+        "valid_upto": "2026-04-05",
+        "crops_handled": [
+            "foodgrains"
+        ]
+    },
+    {
+        "id": 5,
+        "state": "BIHAR",
+        "district": "Patna",
+        "location": "Mokama",
+        "address": "Central Warehouse Mokama, APMC Yard, Mokama, Distt-Patna, Bihar",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "8174881088",
+        "capacity_mt": 5000,
+        "wh_code": "4331648",
+        "registration_date": "2021-04-06",
+        "valid_upto": "2026-04-05",
+        "crops_handled": [
+            "wheat",
+            "paddy"
+        ]
+    },
+    {
+        "id": 6,
+        "state": "BIHAR",
+        "district": "Kishanganj",
+        "location": "Kishanganj",
+        "address": "Central Warehouse Kishanganj, Near Imli Gola Chowk, Paschimpalli Road, Distt-Kishanganj, Bihar",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "8174881088",
+        "capacity_mt": 12000,
+        "wh_code": "4131681",
+        "registration_date": "2021-03-31",
+        "valid_upto": "2026-03-30",
+        "crops_handled": [
+            "rice",
+            "wheat"
+        ]
+    },
+    {
+        "id": 7,
+        "state": "BIHAR",
+        "district": "Pashchim Champaran",
+        "location": "Bettiah",
+        "address": "Central Warehouse Bettiah, APMC Yard, Bazar Samiti, Distt-Pashchim Champaran, Bihar",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "8174881088",
+        "capacity_mt": 20000,
+        "wh_code": "4471650",
+        "registration_date": "2021-04-08",
+        "valid_upto": "2026-04-07",
+        "crops_handled": [
+            "foodgrains"
+        ]
+    },
+    {
+        "id": 8,
+        "state": "BIHAR",
+        "district": "Darbhanga",
+        "location": "Shivdhara",
+        "address": "Central Warehouse Darbhanga, APMC Yard, Shivdhara, Distt-Darbhanga, Bihar, PIN 846004",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "8174881088",
+        "capacity_mt": 6220,
+        "wh_code": "4171643",
+        "registration_date": "2021-03-31",
+        "valid_upto": "2026-03-30",
+        "crops_handled": [
+            "rice",
+            "pulses"
+        ]
+    },
+    {
+        "id": 9,
+        "state": "BIHAR",
+        "district": "Patna",
+        "location": "Musallahpur",
+        "address": "Central Warehouse Musallahpur, APMC Yard, Musallahpur, PO-Mahendru, Distt-Patna, Bihar",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "8174881088",
+        "capacity_mt": 7487,
+        "wh_code": "4371683",
+        "registration_date": "2021-04-07",
+        "valid_upto": "2026-04-06",
+        "crops_handled": [
+            "foodgrains"
+        ]
+    },
+    {
+        "id": 10,
+        "state": "BIHAR",
+        "district": "Gaya",
+        "location": "Manpur",
+        "address": "BSWC Manpur (Gaya), Gaya-Fatehpur Road, near Green Field Public School, Distt-Gaya, Bihar",
+        "warehouseman": "Bihar State Warehousing Corporation",
+        "mobile": "9431279651",
+        "capacity_mt": 3400,
+        "wh_code": "6608137",
+        "registration_date": "2022-07-29",
+        "valid_upto": "2027-07-28",
+        "crops_handled": [
+            "wheat",
+            "paddy"
+        ]
+    },
+    {
+        "id": 11,
+        "state": "BIHAR",
+        "district": "Vaishali",
+        "location": "Sarai Hajipur",
+        "address": "BSWC Sarai Hajipur, Sarai, Hajipur, Distt-Vaishali, Bihar",
+        "warehouseman": "Bihar State Warehousing Corporation",
+        "mobile": "9431279651",
+        "capacity_mt": 2047,
+        "wh_code": "6599856",
+        "registration_date": "2022-07-06",
+        "valid_upto": "2027-07-05",
+        "crops_handled": [
+            "paddy",
+            "maize"
+        ]
+    },
+    {
+        "id": 12,
+        "state": "BIHAR",
+        "district": "Jehanabad",
+        "location": "Jehanabad",
+        "address": "BSWC Jehanabad, Raza Bazar, Bazar Samiti, Distt-Jehanabad, Bihar",
+        "warehouseman": "Bihar State Warehousing Corporation",
+        "mobile": "9431279651",
+        "capacity_mt": 5000,
+        "wh_code": "6591309",
+        "registration_date": "2022-06-06",
+        "valid_upto": "2027-06-05",
+        "crops_handled": [
+            "foodgrains"
+        ]
+    },
+    {
+        "id": 13,
+        "state": "BIHAR",
+        "district": "Rohtas",
+        "location": "Natwar",
+        "address": "BSWC Natwar, Bazar Samiti Campus, Natwar, Distt-Rohtas, Bihar",
+        "warehouseman": "Bihar State Warehousing Corporation",
+        "mobile": "9431279651",
+        "capacity_mt": 30000,
+        "wh_code": "6591481",
+        "registration_date": "2022-06-06",
+        "valid_upto": "2027-06-05",
+        "crops_handled": [
+            "wheat",
+            "paddy"
+        ]
+    },
+    {
+        "id": 14,
+        "state": "BIHAR",
+        "district": "Begusarai",
+        "location": "Begusarai",
+        "address": "BSWC Begusarai, Bazar Samiti, near Sadar Block, Begusarai, Bihar",
+        "warehouseman": "Bihar State Warehousing Corporation",
+        "mobile": "9431279651",
+        "capacity_mt": 25000,
+        "wh_code": "6588420",
+        "registration_date": "2022-06-01",
+        "valid_upto": "2027-05-31",
+        "crops_handled": [
+            "foodgrains"
+        ]
+    },
+    {
+        "id": 15,
+        "state": "BIHAR",
+        "district": "Pashchim Champaran",
+        "location": "Narkatiyaganj",
+        "address": "BSWC Narkatiyaganj, Krishi Market, Bazar Samiti, Distt-Pashchim Champaran, Bihar",
+        "warehouseman": "Bihar State Warehousing Corporation",
+        "mobile": "9431279651",
+        "capacity_mt": 10000,
+        "wh_code": "6591390",
+        "registration_date": "2022-06-06",
+        "valid_upto": "2027-06-05",
+        "crops_handled": [
+            "paddy",
+            "wheat"
+        ]
+    },
+    {
+        "id": 16,
+        "state": "BIHAR",
+        "district": "Purba Champaran",
+        "location": "Motihari",
+        "address": "BSWC Motihari, Bazar Samiti, Station Road, Motihari, Distt-Purba Champaran, Bihar",
+        "warehouseman": "Bihar State Warehousing Corporation",
+        "mobile": "9431279651",
+        "capacity_mt": 5000,
+        "wh_code": "6615249",
+        "registration_date": "2022-08-13",
+        "valid_upto": "2027-08-12",
+        "crops_handled": [
+            "foodgrains"
+        ]
+    },
+    {
+        "id": 17,
+        "state": "HARYANA",
+        "district": "Karnal",
+        "location": "Karnal",
+        "address": "Central Warehouse Karnal, Grain Market / APMC Yard, Distt-Karnal, Haryana",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 25000,
+        "wh_code": "HW_KAR_001",
+        "registration_date": "2021-04-10",
+        "valid_upto": "2026-04-09",
+        "crops_handled": [
+            "wheat",
+            "rice"
+        ]
+    },
+    {
+        "id": 18,
+        "state": "HARYANA",
+        "district": "Kurukshetra",
+        "location": "Thanesar",
+        "address": "Haryana State Warehousing Corporation Warehouse, Thanesar, Distt-Kurukshetra, Haryana",
+        "warehouseman": "Haryana State Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 15000,
+        "wh_code": "HW_KUR_002",
+        "registration_date": "2021-05-05",
+        "valid_upto": "2026-05-04",
+        "crops_handled": [
+            "wheat",
+            "paddy"
+        ]
+    },
+    {
+        "id": 19,
+        "state": "HARYANA",
+        "district": "Sirsa",
+        "location": "Sirsa",
+        "address": "Central Warehouse Sirsa, Near New Grain Market, Distt-Sirsa, Haryana",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 20000,
+        "wh_code": "HW_SIR_003",
+        "registration_date": "2021-06-15",
+        "valid_upto": "2026-06-14",
+        "crops_handled": [
+            "cotton",
+            "wheat"
+        ]
+    },
+    {
+        "id": 20,
+        "state": "HARYANA",
+        "district": "Hisar",
+        "location": "Hisar",
+        "address": "Haryana State Warehousing Corporation Warehouse, Hisar, Haryana",
+        "warehouseman": "Haryana State Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 18000,
+        "wh_code": "HW_HSR_004",
+        "registration_date": "2021-07-01",
+        "valid_upto": "2026-06-30",
+        "crops_handled": [
+            "wheat",
+            "paddy"
+        ]
+    },
+    {
+        "id": 21,
+        "state": "JHARKHAND",
+        "district": "Ranchi",
+        "location": "Ranchi",
+        "address": "Jharkhand State Warehousing Corporation Warehouse, Namkum, Ranchi, Jharkhand",
+        "warehouseman": "Jharkhand State Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 10000,
+        "wh_code": "JH_RAN_001",
+        "registration_date": "2021-07-20",
+        "valid_upto": "2026-07-19",
+        "crops_handled": [
+            "paddy",
+            "maize"
+        ]
+    },
+    {
+        "id": 22,
+        "state": "JHARKHAND",
+        "district": "Dhanbad",
+        "location": "Dhanbad",
+        "address": "Central Warehouse Dhanbad, APMC Yard / Market Yard, Distt-Dhanbad, Jharkhand",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 8000,
+        "wh_code": "JH_DHA_002",
+        "registration_date": "2021-06-10",
+        "valid_upto": "2026-06-09",
+        "crops_handled": [
+            "paddy",
+            "pulses"
+        ]
+    },
+    {
+        "id": 23,
+        "state": "UTTAR PRADESH",
+        "district": "Lucknow",
+        "location": "Lucknow",
+        "address": "Central Warehouse Lucknow, APMC Yard / Transport Nagar Area, Distt-Lucknow, Uttar Pradesh",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 30000,
+        "wh_code": "UP_LKO_001",
+        "registration_date": "2021-05-12",
+        "valid_upto": "2026-05-11",
+        "crops_handled": [
+            "wheat",
+            "rice"
+        ]
+    },
+    {
+        "id": 24,
+        "state": "UTTAR PRADESH",
+        "district": "Varanasi",
+        "location": "Varanasi",
+        "address": "Central Warehouse Varanasi, APMC Grain Market, Distt-Varanasi, Uttar Pradesh",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 15000,
+        "wh_code": "UP_VAR_002",
+        "registration_date": "2021-04-18",
+        "valid_upto": "2026-04-17",
+        "crops_handled": [
+            "paddy",
+            "pulses"
+        ]
+    },
+    {
+        "id": 25,
+        "state": "UTTAR PRADESH",
+        "district": "Bareilly",
+        "location": "Bareilly",
+        "address": "U.P. State Warehousing Corporation Warehouse, Bareilly, Uttar Pradesh",
+        "warehouseman": "U.P. State Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 20000,
+        "wh_code": "UP_BAR_003",
+        "registration_date": "2021-06-01",
+        "valid_upto": "2026-05-31",
+        "crops_handled": [
+            "wheat",
+            "rice"
+        ]
+    },
+    {
+        "id": 26,
+        "state": "PUNJAB",
+        "district": "Ludhiana",
+        "location": "Ludhiana",
+        "address": "Central Warehouse Ludhiana, Near Grain Market, Distt-Ludhiana, Punjab",
+        "warehouseman": "Central Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 25000,
+        "wh_code": "PB_LDH_001",
+        "registration_date": "2021-04-22",
+        "valid_upto": "2026-04-21",
+        "crops_handled": [
+            "wheat",
+            "paddy"
+        ]
+    },
+    {
+        "id": 27,
+        "state": "PUNJAB",
+        "district": "Amritsar",
+        "location": "Amritsar",
+        "address": "Punjab State Warehousing Corporation Warehouse, Amritsar, Punjab",
+        "warehouseman": "Punjab State Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 18000,
+        "wh_code": "PB_AMR_002",
+        "registration_date": "2021-05-05",
+        "valid_upto": "2026-05-04",
+        "crops_handled": [
+            "wheat",
+            "paddy"
+        ]
+    },
+    {
+        "id": 28,
+        "state": "PUNJAB",
+        "district": "Sangrur",
+        "location": "Sangrur",
+        "address": "Punjab State Warehousing Corporation Warehouse, Sangrur, Punjab",
+        "warehouseman": "Punjab State Warehousing Corporation",
+        "mobile": "N/A",
+        "capacity_mt": 16000,
+        "wh_code": "PB_SAN_003",
+        "registration_date": "2021-06-20",
+        "valid_upto": "2026-06-19",
+        "crops_handled": [
+            "wheat",
+            "paddy"
+        ]
+    }
+]

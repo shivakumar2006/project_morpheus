@@ -1,0 +1,242 @@
+[
+    {
+        "_id": 101,
+        "name": "Apple",
+        "image": "apple.avif",
+        "category": "Orchard Fruit",
+        "season": "Rabi",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 120
+    },
+    {
+        "_id": 102,
+        "name": "Avocado",
+        "image": "avocado.avif",
+        "category": "Exotic Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "High",
+        "price": 150
+    },
+    {
+        "_id": 103,
+        "name": "Banana",
+        "image": "banana.avif",
+        "category": "Tropical Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "High",
+        "price": 40
+    },
+    {
+        "_id": 104,
+        "name": "Blueberry",
+        "image": "blueberry.avif",
+        "category": "Berry",
+        "season": "Rabi",
+        "soilType": "Sandy Loam",
+        "waterRequirement": "Moderate",
+        "price": 200
+    },
+    {
+        "_id": 105,
+        "name": "Dragonfruit",
+        "image": "dragonfruit.avif",
+        "category": "Exotic Fruit",
+        "season": "Kharif",
+        "soilType": "Sandy Loam",
+        "waterRequirement": "Moderate",
+        "price": 300
+    },
+    {
+        "_id": 106,
+        "name": "Fig",
+        "image": "fig.avif",
+        "category": "Exotic Fruit",
+        "season": "Rabi",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 120
+    },
+    {
+        "_id": 107,
+        "name": "Grapes",
+        "image": "grapes.avif",
+        "category": "Berry",
+        "season": "Rabi",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 90
+    },
+    {
+        "_id": 108,
+        "name": "Guava",
+        "image": "guava.avif",
+        "category": "Tropical Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 60
+    },
+    {
+        "_id": 109,
+        "name": "Kiwi",
+        "image": "kiwi.avif",
+        "category": "Exotic Fruit",
+        "season": "Rabi",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 250
+    },
+    {
+        "_id": 110,
+        "name": "Lemon",
+        "image": "lemon.avif",
+        "category": "Citrus Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 50
+    },
+    {
+        "_id": 111,
+        "name": "Litchi",
+        "image": "litchi.avif",
+        "category": "Tropical Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "High",
+        "price": 300
+    },
+    {
+        "_id": 112,
+        "name": "Mango",
+        "image": "mango.avif",
+        "category": "Tropical Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "High",
+        "price": 120
+    },
+    {
+        "_id": 113,
+        "name": "Mangosteen",
+        "image": "mangosteen.avif",
+        "category": "Exotic Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "High",
+        "price": 400
+    },
+    {
+        "_id": 114,
+        "name": "Mosambi",
+        "image": "mosambi.avif",
+        "category": "Citrus Fruit",
+        "season": "Rabi",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 70
+    },
+    {
+        "_id": 115,
+        "name": "Oranges",
+        "image": "oranges.avif",
+        "category": "Citrus Fruit",
+        "season": "Rabi",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 80
+    },
+    {
+        "_id": 116,
+        "name": "Papaya",
+        "image": "papaya.avif",
+        "category": "Tropical Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "High",
+        "price": 50
+    },
+    {
+        "_id": 117,
+        "name": "Pineapple",
+        "image": "pineapple.avif",
+        "category": "Tropical Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "High",
+        "price": 60
+    },
+    {
+        "_id": 118,
+        "name": "Pomegranate",
+        "image": "pomegranate.avif",
+        "category": "Exotic Fruit",
+        "season": "Rabi",
+        "soilType": "Sandy Loam",
+        "waterRequirement": "Moderate",
+        "price": 120
+    },
+    {
+        "_id": 119,
+        "name": "Rambutan",
+        "image": "rambutan.avif",
+        "category": "Exotic Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "High",
+        "price": 150
+    },
+    {
+        "_id": 120,
+        "name": "Redberry",
+        "image": "redberry.avif",
+        "category": "Berry",
+        "season": "Rabi",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 180
+    },
+    {
+        "_id": 121,
+        "name": "Sapodilla",
+        "image": "sapodilla.avif",
+        "category": "Tropical Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 90
+    },
+    {
+        "_id": 122,
+        "name": "Starfruit",
+        "image": "starfruit.avif",
+        "category": "Exotic Fruit",
+        "season": "Kharif",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 120
+    },
+    {
+        "_id": 123,
+        "name": "Tangerine",
+        "image": "tangarine.avif",
+        "category": "Citrus Fruit",
+        "season": "Rabi",
+        "soilType": "Loamy",
+        "waterRequirement": "Moderate",
+        "price": 70
+    },
+    {
+        "_id": 124,
+        "name": "Watermelon",
+        "image": "watermelon.avif",
+        "category": "Melon",
+        "season": "Kharif",
+        "soilType": "Sandy Loam",
+        "waterRequirement": "High",
+        "price": 30
+    }
+]
